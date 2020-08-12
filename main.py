@@ -1,17 +1,17 @@
-def binary_search(list, item):
-  low = 0
-  high = len(list)-1
+def quick_sort(sequence):
+  length = len(sequence)
+  if length <= 1:
+    return sequence
+  else:
+    pivot = sequence.pop()
+     
+  items_greater = []
+  items_lower  = []
+  for item in sequence:
+     if item > pivot:
+       items_greater.append(item)
+     else:
+        items_lower.append(item)
 
-  while low <= high:
-    mid = ((low + high)//2)
-    guess = list[mid]
-    if guess == item:
-      return mid
-    if guess > item:
-      high = mid + 1
-    else:
-      low = mid + 1
-  return None
-
-my_list = [20, 30, 40, 67, 89, 98, 143]
-print(binary_search(my_list, 67))
+  return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
+print(quick_sort([2, 3, 5, 7, 19, 78, 56, 34, 1, 2, 45, 77]))
